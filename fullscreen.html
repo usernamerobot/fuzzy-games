@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Game</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .game-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        iframe {
+            border: none;
+            width: 90%;
+            height: 90%;
+        }
+        .fullscreen-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function getGameUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const game = urlParams.get('game');
+            let gameUrl = '';
+
+            switch(game) {
+                case 'deadshot':
+                    gameUrl = 'https://deadshot.io/';
+                    break;
+               case 'landho':
+                    gameUrl = 'https://landho.uk/';
+                    break;
+                case 'evoworld':
+                    gameUrl = 'https://evoworld.io/';
+                    break;
+               case 'nugget':
+                    gameUrl = 'https://nuggetroyale.io/#Ketchup';
+                    break;
+              case 'ships3d':
+                    gameUrl = 'https://yp3d.com/ships3d/';
+                    break;
+              case 'flower':
+                    gameUrl = 'https://krew.io/';
+                    break;
+               case 'goodwar':
+                    gameUrl = 'https://warbrokers.io/';
+                    break;
+               case 'greendoor':
+                    gameUrl = 'https://voxiom.io/';
+                    break;
+                case 'bloxd':
+                    gameUrl = 'https://bloxd.io/';
+                    break;
+                case 'paper':
+                    gameUrl = 'https://paper-io.com/';
+                    break;
+                case 'impostor':
+                    gameUrl = 'https://impostor.io/';
+                    break;
+               case 'amongus':
+                    gameUrl = 'https://amongusplay.online/';
+                    break;
+               case 'hole.io':
+                    gameUrl = 'https://hole-io.com/';
+                    break;
+
+                case 'shellshock':
+                    gameUrl = 'https://shellshock.io/';
+                    break;
+               case 'tileman':
+                    gameUrl = 'https://tileman.io/';
+                    break;
+              case 'dashcraft':
+                    gameUrl = 'https://dashcraft.io/';
+                    break;
+              case 'battletabs':
+                    gameUrl = 'https://tyran.io/';
+                    break;
+             case 'blocktanks':
+                    gameUrl = 'https://ferals.io/';
+                    break;
+             case 'dudes':
+                    gameUrl = 'https://battledudes.io/';
+                    break;
+            case 'gobattle':
+                    gameUrl = 'https://gobattle.io/#!';
+                    break;
+            case 'goober':
+                    gameUrl = 'https://gooberroyale.winterpixel.io/';
+                    break;
+           case 'snake':
+                    gameUrl = 'http://slither.com/io';
+                    break;
+
+                default:
+                    gameUrl = 'about:blank'; // fallback if no game specified
+            }
+
+            return gameUrl;
+        }
+
+        function setIframeSrc() {
+            const iframe = document.getElementById('game-iframe');
+            iframe.src = getGameUrl();
+        }
+
+        function enterFullscreen() {
+            const iframe = document.getElementById('game-iframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { // Firefox
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { // IE/Edge
+                iframe.msRequestFullscreen();
+            }
+        }
+
+        window.onload = setIframeSrc;
+    </script>
+</head>
+<body>
+    <div class="game-container">
+        <iframe id="game-iframe" allow="gamepad *; fullscreen"></iframe>
+        <button class="fullscreen-button" onclick="enterFullscreen()">Go Fullscreen</button>
+    </div>
+</body>
+</html>
